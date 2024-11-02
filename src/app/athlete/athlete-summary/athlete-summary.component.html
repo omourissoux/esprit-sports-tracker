@@ -1,0 +1,26 @@
+@if (data){
+  <div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img class="is-rounded" src="{{data.athlete.profile_medium}}" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{data.athlete.firstname}} {{data.athlete.lastname}}</p>
+          <p class="subtitle is-6">{{data.athlete.city}}</p>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <app-athlete-stats [data]="data.stats"></app-athlete-stats>
+      </div>
+      <hr />
+      <div>
+        <app-athlete-zones [data]="data.zones.heart_rate.zones"></app-athlete-zones>
+      </div>
+      <hr />
+    </div>
+  </div>
+}

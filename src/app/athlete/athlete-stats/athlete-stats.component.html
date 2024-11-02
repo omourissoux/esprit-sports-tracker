@@ -1,0 +1,68 @@
+@if (data) {
+<div class="tabs is-fullwidth is-centered">
+    <ul>
+      <li [ngClass]="(selectedTab==='run')?'is-active':''">
+        <a (click)="switchTab('run')">
+          <span class="icon is-small"><i class="fas fa-running" aria-hidden="true"></i></span>
+          <span>Cap</span>
+        </a>
+      </li>
+      <li [ngClass]="(selectedTab==='ride')?'is-active':''">
+        <a (click)="switchTab('ride')">
+          <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+          <span>Vélo</span>
+        </a>
+      </li>
+      <li [ngClass]="(selectedTab==='swim')?'is-active':''">
+        <a (click)="switchTab('swim')">
+          <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+          <span>Nat</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <h5 class="title is-5 has-text-centered">Statistiques depuis le début</h5>
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Nombre</p>
+        <p class="subtitle">{{allTimeDisplayData.count}}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Distance</p>
+        <p class="subtitle">{{allTimeDisplayData.distance | distance:0 | number }} km</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Dénivelé</p>
+        <p class="subtitle">{{allTimeDisplayData.elevation_gain | number:'1.0-0' }} m</p>
+      </div>
+    </div>
+  </nav>
+  
+  <h5 class="title is-5 has-text-centered">4 dernières semaines</h5>
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Nombre</p>
+        <p class="subtitle">{{recentDisplayData.count}}</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Distance</p>
+        <p class="subtitle">{{recentDisplayData.distance | distance:0 | number }} km</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Dénivelé</p>
+        <p class="subtitle">{{recentDisplayData.elevation_gain | number:'1.0-0' }} m</p>
+      </div>
+    </div>
+  </nav>
+}
+  

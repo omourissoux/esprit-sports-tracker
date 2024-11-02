@@ -1,0 +1,57 @@
+@if (data) {
+    <div class="tabs is-fullwidth is-centered">
+        <ul>
+          <li [ngClass]="(displayZone().zoneNumber === 0) ? 'is-active' : ''">
+            <a (click)="switchTab(0)">
+              <span class="icon is-small"><i class="fas fa-running" aria-hidden="true"></i></span>
+              <span>Zone 0</span>
+            </a>
+          </li>
+          <li [ngClass]="(displayZone().zoneNumber === 1) ? 'is-active' : ''">
+            <a (click)="switchTab(1)">
+              <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+              <span>Zone 1</span>
+            </a>
+          </li>
+          <li [ngClass]="(displayZone().zoneNumber === 2) ? 'is-active' : ''">
+            <a (click)="switchTab(2)">
+              <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+              <span>Zone 2</span>
+            </a>
+          </li>
+          <li [ngClass]="(displayZone().zoneNumber === 3) ? 'is-active' : ''">
+            <a (click)="switchTab(3)">
+              <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+              <span>Zone 3</span>
+            </a>
+          </li>
+            <li [ngClass]="(displayZone().zoneNumber === 4) ? 'is-active' : ''">
+                <a (click)="switchTab(4)">
+                <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+                <span>Zone 4</span>
+                </a>
+            </li>
+            <li [ngClass]="(displayZone().zoneNumber === 5) ? 'is-active' : ''">
+                <a (click)="switchTab(5)">
+                <span class="icon is-small"><i class="fas fa-biking" aria-hidden="true"></i></span>
+                <span>Zone 5</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <h5 class="title is-5 has-text-centered">Valeurs</h5>
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Min</p>
+        <p class="subtitle">{{ displayZone().boundaries.min }} bpm</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Max</p>
+        <p class="subtitle">{{ displayZone().boundaries.max }} bpm</p>
+      </div>
+    </div>
+  </nav> 
+}
