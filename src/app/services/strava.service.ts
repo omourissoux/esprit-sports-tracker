@@ -20,8 +20,7 @@ export class StravaService {
   public makeAuthenticatedRequest(method: string = 'GET', path: string) {
 
     let url = `${environment.stravaBaseUrl}/${path}`;
-    // const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` };
-//, { headers: headers }
+
     return this.http.request(method, url).pipe(
       catchError(this.handleError)
     )
