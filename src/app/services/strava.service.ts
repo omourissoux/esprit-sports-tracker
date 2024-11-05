@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, map } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, concatMap } from 'rxjs/operators';
 import { Athlete } from '../models/athlete.model';
 import { Activity, ActivityStats, RootObject } from '../models/activity.model';
 import { ActivityZonesData } from '../models/zones.model';
+import RefreshApiToken from '../models/refreshApiToken';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,16 @@ export class StravaService {
   constructor(
     private http: HttpClient
   ) {
+   }
+
+   public getAccessToken() : Observable<RefreshApiToken> {
+    const url =
+    // `${environment.stravaOAuth.tokenEndpoint}?client_id=${environment.stravaOAuth.clientId}&client_secret=${environment.stravaOAuth.dummyClientSecret}&refresh_token=${environment.stravaOAuth.refreshToken}&grant_type=refresh_token`;
+    `${environment.stravaOAuth.tokenEndpoint}?client_id=${environment.stravaOAuth.clientId}&client_secret=${environment.stravaOAuth.dummyClientSecret}&code=${environment.stravaOAuth.athleteCode}&grant_type=authorization_code`;
+
+    return this.http.post<RefreshApiToken>(url, {}).pipe(
+      catchError(this.handleError)
+    )
    }
 
   public makeAuthenticatedRequest(method: string = 'GET', path: string) {
@@ -48,6 +59,15 @@ export class StravaService {
 
   public getActivityZones(id: number): Observable<ActivityZonesData> {
     return this.makeAuthenticatedRequest('GET', `activities/${id}/zones`) as  Observable<ActivityZonesData>;
+  }
+
+  public testWithAccessToken() : Observable<Object> {
+
+    const lastMonth = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    return this.getAccessToken().pipe(
+      map((token) => this.http.get(`${environment.stravaBaseUrl}/athlete/activities?access_token=${token as any['access_token']}&after=${lastMonth.getTime()}`))
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

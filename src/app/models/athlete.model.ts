@@ -44,3 +44,68 @@ export interface Athlete {
   bikes: Bike[];
   shoes: Shoe[];
 }
+
+export interface Club {
+  id: number;
+  resource_state: number;
+  name: string;
+  profile_medium: string;
+  cover_photo: string;
+  cover_photo_small: string;
+  sport_type: string;
+  city: string;
+  state: string;
+  country: string;
+  private: boolean;
+  member_count: number;
+  featured: boolean;
+  verified: boolean;
+  url: string;
+}
+
+export enum SportType {
+  CYCLING = 'cycling',
+  RUNNING = 'running',
+  TRIATHLON = 'triathlon',
+  OTHER = 'other'
+}
+
+export enum ActivityType {
+  ALPINE_SKI = 'AlpineSki',
+  BACKCOUNTRY_SKI = 'BackcountrySki',
+  CANOEING = 'Canoeing',
+  CROSSFIT = 'Crossfit',
+  E_BIKE_RIDE = 'EBikeRide',
+  ELLIPTICAL = 'Elliptical',
+  GOLF = 'Golf',
+  HANDCYCLE = 'Handcycle',
+  HIKE = 'Hike',
+  ICE_SKATE = 'IceSkate',
+  INLINE_SKATE = 'InlineSkate',
+  KAYAKING = 'Kayaking',
+  KITESURF = 'Kitesurf',
+  NORDIC_SKI = 'NordicSki',
+  RIDE = 'Ride',
+  ROCK_CLIMBING = 'RockClimbing',
+  ROLLER_SKI = 'RollerSki',
+  ROWING = 'Rowing',
+  RUN = 'Run',
+  SAIL = 'Sail',
+  SKATEBOARD = 'Skateboard',
+  SNOWBOARD = 'Snowboard',
+  SNOWSHOE = 'Snowshoe',
+  SOCCER = 'Soccer',
+  STAIRSTEPPER = 'StairStepper',
+  STANDUPPADDLING = 'StandUpPaddling',
+  SURFING = 'Surfing',
+  SWIM = 'Swim',
+  VELOMOBILE = 'Velomobile',
+  VIRTUALRIDE = 'VirtualRide',
+  VIRTUALRUN = 'VirtualRun',
+  WALK = 'Walk',
+  WEIGHTTRAINING = 'WeightTraining',
+  WHEELCHAIR = 'Wheelchair',
+  WINDSURF = 'Windsurf',
+  WORKOUT = 'Workout',
+  YOGA = 'Yoga'
+}
